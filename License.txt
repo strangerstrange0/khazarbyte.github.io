@@ -1,0 +1,26 @@
+KHARZARBYTE INC. SOFTWARE LICENSE AGREEMENT
+
+This software ("KhazarNote") is developed and owned by KhazarByte Inc.
+
+PLEASE READ THIS LICENSE AGREEMENT CAREFULLY BEFORE USING THE SOFTWARE.
+
+1. Grant of License:
+   KhazarByte Inc. grants you a non-exclusive, non-transferable, personal license to use this software for your own personal or internal business purposes.
+
+2. Restrictions:
+   - You may not copy, modify, distribute, or create derivative works of the software.
+   - You may not sell, sublicense, or lease the software to any third party.
+   - You may not attempt to reverse engineer, decompile, or disassemble the software.
+
+3. Intellectual Property:
+   The software and all associated intellectual property rights are the sole property of KhazarByte Inc.
+
+4. Liability:
+   KhazarByte Inc. shall not be held liable for any direct, indirect, incidental, or consequential damages arising from the use of this software.
+
+5. Termination:
+   This license is effective until terminated. It will terminate automatically without notice if you fail to comply with any provision of this agreement.
+
+By using this software, you acknowledge that you have read, understood, and agreed to the terms of this License Agreement.
+
+KhazarByte Inc.
