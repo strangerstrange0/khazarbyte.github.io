@@ -535,8 +535,100 @@
             transition: background 0.3s ease;
         }
 
-        .notification-close:hover {
+        /* Download Modal Styles */
+        .download-modal {
+            display: flex;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .download-modal-content {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            color: white;
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        .download-modal-content h3 {
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        .download-modal-content p {
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .download-options {
+            display: grid;
+            gap: 15px;
+        }
+
+        .download-option {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .download-option:hover {
             background: rgba(255, 255, 255, 0.2);
+            transform: translateX(10px);
+        }
+
+        .option-icon {
+            font-size: 32px;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .option-info {
+            flex: 1;
+        }
+
+        .option-info h4 {
+            margin: 0 0 5px 0;
+            font-size: 18px;
+        }
+
+        .option-info p {
+            margin: 0 0 8px 0;
+            opacity: 0.8;
+            font-size: 14px;
+        }
+
+        .file-size {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .download-notification.success .notification-content {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
         }
 
         .demo-container {
@@ -982,15 +1074,105 @@
             // Show download notification
             showDownloadNotification();
             
-            // Create download link
-            const downloadUrl = 'C:\Users\Admin\Desktop\Ramal\KHAZARNOTE_PROJECT\KhazarNote'; // Həqiqi fayl linki buraya yazılacaq
-            const fileName = 'KhazarNote_v1.2.exe';
+            // Multiple download options
+            showDownloadOptions();
+        }
+
+        function showDownloadOptions() {
+            const modal = document.createElement('div');
+            modal.className = 'download-modal';
+            modal.innerHTML = `
+                <div class="download-modal-content">
+                    <span class="close" onclick="closeDownloadModal()">&times;</span>
+                    <h3>📥 KhazarNote Yüklə</h3>
+                    <p>Cihazınıza uyğun versiyanu seçin:</p>
+                    
+                    <div class="download-options">
+                        <div class="download-option" onclick="directDownload('./downloads/KhazarNote_v1.2.exe', 'KhazarNote_v1.2.exe')">
+                            <div class="option-icon">🖥️</div>
+                            <div class="option-info">
+                                <h4>Windows versiyası</h4>
+                                <p>KhazarNote_v1.2.exe</p>
+                                <span class="file-size">12.5 MB</span>
+                            </div>
+                        </div>
+                        
+                        <div class="download-option" onclick="directDownload('./downloads/KhazarNote.lnk', 'KhazarNote.lnk')">
+                            <div class="option-icon">🔗</div>
+                            <div class="option-info">
+                                <h4>Link versiyası</h4>
+                                <p>KhazarNote.lnk</p>
+                                <span class="file-size">2.1 KB</span>
+                            </div>
+                        </div>
+                        
+                        <div class="download-option" onclick="directDownload('./downloads/KhazarNote_v1.2.zip', 'KhazarNote_v1.2.zip')">
+                            <div class="option-icon">📦</div>
+                            <div class="option-info">
+                                <h4>Portable versiya</h4>
+                                <p>KhazarNote_v1.2.zip</p>
+                                <span class="file-size">15.1 MB</span>
+                            </div>
+                        </div>
+                        
+                        <div class="download-option" onclick="directDownload('./downloads/KhazarNote_v1.2.apk', 'KhazarNote_v1.2.apk')">
+                            <div class="option-icon">📱</div>
+                            <div class="option-info">
+                                <h4>Android versiyası</h4>
+                                <p>KhazarNote_v1.2.apk</p>
+                                <span class="file-size">6.7 MB</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
             
-            // Method 1: Direct file download (if you have actual file)
-            // window.open('path/to/your/KhazarNote_installer.exe', '_blank');
+            document.body.appendChild(modal);
+        }
+
+        function directDownload(filePath, fileName) {
+            const link = document.createElement('a');
+            link.href = filePath;
+            link.download = fileName;
+            link.style.display = 'none';
             
-            // Method 2: Create demo download (sample)
-            createDemoDownload(fileName);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Close modal and show success message
+            closeDownloadModal();
+            showSuccessNotification(fileName);
+        }
+
+        function closeDownloadModal() {
+            const modal = document.querySelector('.download-modal');
+            if (modal) {
+                modal.remove();
+            }
+        }
+
+        function showSuccessNotification(fileName) {
+            const notification = document.createElement('div');
+            notification.className = 'download-notification success';
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <div class="notification-icon">✅</div>
+                    <div class="notification-text">
+                        <strong>Uğurla yükləndi!</strong>
+                        <p>${fileName} faylı yüklənməyə başladı</p>
+                    </div>
+                    <button class="notification-close" onclick="closeNotification(this)">&times;</button>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, 4000);
         }
 
         function createDemoDownload(fileName) {
