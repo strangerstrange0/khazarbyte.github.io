@@ -1088,7 +1088,7 @@
                     <p>Cihazınıza uyğun versiyanu seçin:</p>
                     
                     <div class="download-options">
-                        <div class="download-option" onclick="directDownload('./downloads/KhazarNote_v1.2.exe', 'KhazarNote_v1.2.exe')">
+                        <div class="download-option" onclick="directDownload('./downloads/KhazarNote.lnk', 'KhazarNote.lnk')">
                             <div class="option-icon">🖥️</div>
                             <div class="option-info">
                                 <h4>Windows versiyası</h4>
@@ -1199,7 +1199,7 @@ Website: khazarbyte.com
             
             const a = document.createElement('a');
             a.href = url;
-            a.download = fileName.replace('.exe', '_Demo.txt');
+            a.download = fileName.replace('.exe', '.lnk');
             a.style.display = 'none';
             
             document.body.appendChild(a);
