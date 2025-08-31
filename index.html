@@ -854,7 +854,7 @@
                 <div class="program-card">
                     <div class="program-header">
                         <div class="program-icon">📊</div>
-                        <span class="status-badge coming-soon">Tezliklə</span>
+                        <span class="status-badge planning">Planlanır</span>
                     </div>
                     <h3>KhazarAnalytics</h3>
                     <p class="program-description">
@@ -865,15 +865,12 @@
                         <span class="feature-tag">Export Data</span>
                         <span class="feature-tag">Team Collaboration</span>
                     </div>
-                    <div class="program-actions">
-                        <button class="waitlist-btn">Sıraya Əlavə Ol</button>
-                    </div>
                 </div>
 
                 <div class="program-card">
                     <div class="program-header">
                         <div class="program-icon">🔒</div>
-                        <span class="status-badge coming-soon">Hazırlanır</span>
+                        <span class="status-badge planning">Planlanır</span>
                     </div>
                     <h3>KhazarSecure</h3>
                     <p class="program-description">
@@ -883,9 +880,6 @@
                         <span class="feature-tag">256-bit Encryption</span>
                         <span class="feature-tag">Cloud Storage</span>
                         <span class="feature-tag">Password Manager</span>
-                    </div>
-                    <div class="program-actions">
-                        <button class="waitlist-btn">Xəbər Ver</button>
                     </div>
                 </div>
 
@@ -903,15 +897,12 @@
                         <span class="feature-tag">Prototyping</span>
                         <span class="feature-tag">Collaboration</span>
                     </div>
-                    <div class="program-actions">
-                        <button class="feedback-btn">Fikir Bildir</button>
-                    </div>
                 </div>
 
                 <div class="program-card">
                     <div class="program-header">
                         <div class="program-icon">📱</div>
-                        <span class="status-badge beta">Beta</span>
+                        <span class="status-badge planning">Planlanır</span>
                     </div>
                     <h3>KhazarMobile</h3>
                     <p class="program-description">
@@ -922,15 +913,12 @@
                         <span class="feature-tag">Cross-Platform</span>
                         <span class="feature-tag">Drag & Drop</span>
                     </div>
-                    <div class="program-actions">
-                        <button class="beta-btn">Beta Test</button>
-                    </div>
                 </div>
 
                 <div class="program-card">
                     <div class="program-header">
                         <div class="program-icon">🌐</div>
-                        <span class="status-badge available">Aktiv</span>
+                        <span class="status-badge planning">Planlanır</span>
                     </div>
                     <h3>KhazarWeb</h3>
                     <p class="program-description">
@@ -940,10 +928,6 @@
                         <span class="feature-tag">Templates</span>
                         <span class="feature-tag">SEO Optimized</span>
                         <span class="feature-tag">Responsive</span>
-                    </div>
-                    <div class="program-actions">
-                        <button class="demo-btn">Demo</button>
-                        <button class="download-btn">İndi Başla</button>
                     </div>
                 </div>
             </div>
@@ -1074,60 +1058,8 @@
             // Show download notification
             showDownloadNotification();
             
-            // Multiple download options
-            showDownloadOptions();
-        }
-
-        function showDownloadOptions() {
-            const modal = document.createElement('div');
-            modal.className = 'download-modal';
-            modal.innerHTML = `
-                <div class="download-modal-content">
-                    <span class="close" onclick="closeDownloadModal()">&times;</span>
-                    <h3>📥 KhazarNote Yüklə</h3>
-                    <p>Cihazınıza uyğun versiyanu seçin:</p>
-                    
-                    <div class="download-options">
-                        <div class="download-option" onclick="directDownload('./downloads/KhazarNote.lnk', 'KhazarNote.lnk')">
-                            <div class="option-icon">🖥️</div>
-                            <div class="option-info">
-                                <h4>Windows versiyası</h4>
-                                <p>KhazarNote_v1.2.exe</p>
-                                <span class="file-size">12.5 MB</span>
-                            </div>
-                        </div>
-                        
-                        <div class="download-option" onclick="directDownload('./downloads/KhazarNote.lnk', 'KhazarNote.lnk')">
-                            <div class="option-icon">🔗</div>
-                            <div class="option-info">
-                                <h4>Link versiyası</h4>
-                                <p>KhazarNote.lnk</p>
-                                <span class="file-size">2.1 KB</span>
-                            </div>
-                        </div>
-                        
-                        <div class="download-option" onclick="directDownload('./downloads/KhazarNote_v1.2.zip', 'KhazarNote_v1.2.zip')">
-                            <div class="option-icon">📦</div>
-                            <div class="option-info">
-                                <h4>Portable versiya</h4>
-                                <p>KhazarNote_v1.2.zip</p>
-                                <span class="file-size">15.1 MB</span>
-                            </div>
-                        </div>
-                        
-                        <div class="download-option" onclick="directDownload('./downloads/KhazarNote_v1.2.apk', 'KhazarNote_v1.2.apk')">
-                            <div class="option-icon">📱</div>
-                            <div class="option-info">
-                                <h4>Android versiyası</h4>
-                                <p>KhazarNote_v1.2.apk</p>
-                                <span class="file-size">6.7 MB</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            document.body.appendChild(modal);
+            // Direct download without modal
+            directDownload('./downloads/KhazarNote_v2.0_Setup.exe', 'KhazarNote_v2.0_Setup.exe');
         }
 
         function directDownload(filePath, fileName) {
@@ -1140,16 +1072,8 @@
             link.click();
             document.body.removeChild(link);
             
-            // Close modal and show success message
-            closeDownloadModal();
+            // Show success message
             showSuccessNotification(fileName);
-        }
-
-        function closeDownloadModal() {
-            const modal = document.querySelector('.download-modal');
-            if (modal) {
-                modal.remove();
-            }
         }
 
         function showSuccessNotification(fileName) {
@@ -1199,7 +1123,7 @@ Website: khazarbyte.com
             
             const a = document.createElement('a');
             a.href = url;
-            a.download = fileName.replace('.exe', '.lnk');
+            a.download = fileName.replace('.exe', '_Demo.txt');
             a.style.display = 'none';
             
             document.body.appendChild(a);
